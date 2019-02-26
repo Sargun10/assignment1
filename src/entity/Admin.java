@@ -1,4 +1,6 @@
+package entity;
 
+import comparator.SortByName;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.InputMismatchException;
@@ -23,20 +25,30 @@ public class Admin {
         c.customerId = customerAl.size();
 
     }
+
     /**
-     * This is the method which is used to add all customer ids in one array list.
-     * @return array list of customer ids.
+     * This is the method which is used to add all customer Ids in one array
+     * list.
+     *
+     * @return array list of customer Ids.
      */
     public ArrayList<Integer> addAllCustomerIds() {
         ArrayList<Integer> allCustomerIds = new ArrayList<>();
-        for (Customer c :customerAl) {
-            allCustomerIds.add(c.customerId);
+        if (customerAl.size() > 6) {
+            for (Customer c : customerAl) {
+
+                allCustomerIds.add(c.customerId);
+            }
+            return allCustomerIds;
+        } else {
+            return null;
         }
-        return allCustomerIds;
+
     }
 
     /**
      * This is the method which is used to add car details once user is added.
+     *
      * @param Customer type object c.
      * @return Nothing.
      * @exception throws InputMismatchException if user enters invalid data.
@@ -115,7 +127,7 @@ public class Admin {
     public void showCustomerInfo(int id) {
         for (Customer c : customerAl) {
             if (isExistingCustomer(id)) {
-                System.out.println("Customer id :" + c.customerId + "  Customer name :" + c.customerName);
+                System.out.println("Customer id :" + c.customerId + "  Customer name :" + c.getCustomerName());
             }
         }
     }
@@ -129,7 +141,7 @@ public class Admin {
         Collections.sort(customerAl, new SortByName());
         System.out.println("sorted list :");
         for (Customer c : customerAl) {
-            System.out.println("Customer id :" + c.customerId + "  Customer name :" + c.customerName);
+            System.out.println("Customer id :" + c.customerId + "  Customer name :" + c.getCustomerName());
             for (Car car : c.carAl) {
                 System.out.println("car id :" + car.carId + "  Car Name :" + car.carName + "  Model :" + car.model);
             }
@@ -146,7 +158,7 @@ public class Admin {
     public void showCustomerWiseInfo(int id) {
         for (Customer c : customerAl) {
             if (id == c.customerId) {
-                System.out.println("Customer id " + c.customerId + "\nCustomer name " + c.customerName + "\n");
+                System.out.println("Customer id " + c.customerId + "\nCustomer name " + c.getCustomerName() + "\n");
                 for (Car car : c.carAl) {
                     System.out.println("car id " + car.carId + "\nCar Name " + car.carName + "\n Model " + car.model + "\n Price " + car.price + "\n Resale value " + car.resaleValue);
                 }
@@ -180,9 +192,9 @@ public class Admin {
 
     /**
      * This is the method which is used to declare winners that are common in
-     * list by admin and list by system.
+     * list by Admin and list by system.
      *
-     * @param list of 6 ids by system and list of 3 ids by admin.
+     * @param: list of 6 ids by system and list of 3 ids by admin.
      */
     public void generatePrizes(List<Integer> list6Ids, List<Integer> list3Ids) {
         ArrayList<Integer> prizeWinners = new ArrayList<>(list6Ids);

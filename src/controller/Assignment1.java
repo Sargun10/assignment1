@@ -1,4 +1,7 @@
+package controller;
 
+import entity.Customer;
+import entity.Admin;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -26,7 +29,6 @@ class Assignment1 {
                 randomIdsBySystem.add(randomId);
             }
         }
-        System.out.println("by system  " + randomIdsBySystem);
         return randomIdsBySystem;
     }
 
@@ -77,9 +79,11 @@ class Assignment1 {
                             name = sc.next();
                         } while (!isStringOnlyAlphabet(name));
                         Customer customer = new Customer(name);
-                        admin.addNewCustomer(customer);//adds new customer to the arraylist.
+                        admin.addNewCustomer(customer);
+                        //adds new customer to the arraylist.
                         System.out.println("customer details added ");
-                        admin.addCarDetails(customer);//adds new car to the arraylist of cars.
+                        admin.addCarDetails(customer);
+                        //adds new car to the arraylist of cars.
                         break;
 
                     case 2:
@@ -100,7 +104,8 @@ class Assignment1 {
 
                     case 3:
                         System.out.println("-----");
-                        admin.showSortedList();// prints list of sorted customers by name with their cars.
+                        admin.showSortedList();
+                        // prints list of sorted customers by name with their cars.
                         break;
                     case 4:
                         int customerId;
@@ -108,22 +113,33 @@ class Assignment1 {
                             System.out.println("enter valid id of the customer  ");
                             customerId = sc.nextInt();
                         } while (!admin.isExistingCustomer(customerId));
-                        admin.showCustomerWiseInfo(customerId);//displays information about entered id.
+                        admin.showCustomerWiseInfo(customerId);
+                        //displays information about entered id.
 
                         break;
 
                     case 5:
+
                         ArrayList<Integer> allCustomerIds = new ArrayList<>();
                         ArrayList<Integer> random6Ids = new ArrayList<>();
                         ArrayList<Integer> random3Ids = new ArrayList<>();
+
                         allCustomerIds = admin.addAllCustomerIds();
-                        random6Ids = generateRandomIds(allCustomerIds);//generate random 6 ids out of existing ids.
-                        random3Ids = admin.enterRandom3Ids();//takes 3 ids from user as input.
-                        admin.generatePrizes(random6Ids, random3Ids);//generate an id that is common in both lists.
-                        System.out.println("congratulations to the winners ");
+                        if (allCustomerIds != null) {
+                            random6Ids = generateRandomIds(allCustomerIds);
+                            //generate random 6 ids out of existing ids.
+                            random3Ids = admin.enterRandom3Ids();
+                            //takes 3 ids from user as input.
+                            admin.generatePrizes(random6Ids, random3Ids);
+                            //generate an id that is common in both lists.
+                            System.out.println("congratulations to the winners ");
+                        } else {
+                            System.out.println("insufficient entries in database !!!");
+                        }
                         break;
                     case 6:
-                        flag = false;//to exit from the main menu.
+                        flag = false;
+                        //to exit from the main menu.
                         break;
                 }
 

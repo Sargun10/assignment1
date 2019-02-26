@@ -1,3 +1,5 @@
+package entity;
+
 
 import java.util.ArrayList;
 
@@ -14,9 +16,12 @@ import java.util.ArrayList;
 public class Customer {
     protected ArrayList<Car> carAl=new ArrayList<>();
     protected int customerId;
-    protected String customerName;
+    private String customerName;
     // constructor is to give entered name to the customer.
-    Customer(String customerName){
+    public Customer(String customerName){
         this.customerName=customerName;
+    }
+    public String getCustomerName(){
+        return customerName;
     }
 }

@@ -1,4 +1,7 @@
+package comparator;
 
+
+import entity.Customer;
 import java.util.Comparator;
 
 /*
@@ -18,7 +21,7 @@ public class SortByName implements Comparator<Customer> {
 //        if(o1.customerNameo2.customerName){
 //            return 1;
 //        }
-            return (o1.customerName.compareToIgnoreCase(o2.customerName));
+            return (o1.getCustomerName().compareToIgnoreCase(o2.getCustomerName()));
     }
     
 }
